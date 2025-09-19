@@ -32,13 +32,12 @@ branch_rm() {
 
 case $1 in
   "ls")
-    branch_ls $2
+    branch_ls "${@:2}"
     ;;
   "rm")
-    branch_rm $2
+    branch_rm "${@:2}"
     ;;
   *)
-    echo "Unknown operation: $1"
-    exit 1
+    git "$@"
     ;;
 esac
