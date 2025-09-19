@@ -35,12 +35,27 @@ branch_rm() {
   fi
 }
 
+checkout_remote() {
+  local changes_count=$(echo $(git status -s | wc -l))
+
+  if [ "$changes_count" != "0" ]; then
+    echo -e "${RED}ERROR${NC}: Please commit your local changes first."
+    exit 1
+  fi
+
+  local branch_name="$2"
+  git fetch "$1" "$branch_name" && git checkout "$branch_name"
+}
+
 case $1 in
   "ls")
     branch_ls "${@:2}"
     ;;
   "rm")
     branch_rm "${@:2}"
+    ;;
+  "cr")
+    checkout_remote "${@:2}"
     ;;
   *)
     git "$@"
