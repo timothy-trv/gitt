@@ -15,5 +15,5 @@ gitt rm [regex pattern]
 ```
 - Checkout to remote branch
 ```
-gitt cr [branch name]
+gitt cr [remote name] [branch name]
 ```
