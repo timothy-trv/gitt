@@ -14,6 +14,11 @@ branch_ls() {
 }
 
 branch_rm() {
+  if [ -z "$1" ]; then
+    echo -e "${RED}ERROR${NC}: Please provide the pattern."
+    exit 1
+  fi
+
   local pattern="$1"
   branch_ls "$pattern"
   read -r -p "Do you want to delete above branches? [y/N] " delete_all
