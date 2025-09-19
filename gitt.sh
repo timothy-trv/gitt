@@ -5,24 +5,24 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 branch_ls() {
-  COUNTER=0
+  local counter=0
 
-  git branch | grep "$1" | while read -r BRANCH_NAME; do
-    echo -e "$((COUNTER+1))) ${GREEN}${BRANCH_NAME}${NC}"
-    COUNTER=$((COUNTER+1))
+  git branch | grep "$1" | while read -r branch_name; do
+    echo -e "$((counter+1))) ${GREEN}${branch_name}${NC}"
+    counter=$((counter+1))
   done
 }
 
 branch_rm() {
-  BRANCH_PATTERN="$1"
-  branch_ls "$BRANCH_PATTERN"
-  read -r -p "Do you want to delete above branches? [y/N] " DELETE_ALL
+  local pattern="$1"
+  branch_ls "$pattern"
+  read -r -p "Do you want to delete above branches? [y/N] " delete_all
 
-  if [[ "$DELETE_ALL" == "y" ]]; then
+  if [[ "$delete_all" == "y" ]]; then
 
-    git branch | grep "$BRANCH_PATTERN" | while read -r BRANCH_NAME; do
-      git branch -D "$BRANCH_NAME"
-      echo -e "${RED}${BRANCH_NAME}${NC} Deleted!"
+    git branch | grep "$pattern" | while read -r branch_name; do
+      git branch -D "$branch_name"
+      echo -e "${RED}${branch_name}${NC} Deleted!"
     done
 
   else
