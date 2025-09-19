@@ -9,7 +9,11 @@ Place `gitt.sh` under any of your `/bin` (essential binaries) directory.
 ```
 gitt ls [regex pattern]
 ```
-- Remove git branches
+- Remove multiple git branches
 ```
 gitt rm [regex pattern]
+```
+- Checkout to remote branch
+```
+gitt cr [branch name]
 ```
